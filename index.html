@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nigusu Tigabu | Software Engineering Student & Aspiring Software Developer</title>
+    <meta name="description" content="Portfolio of Nigusu Tigabu, an Ethiopian Software Engineering student building practical web applications, backend systems, and AI-powered solutions." />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Nigusu Tigabu | Software Engineering Student & Aspiring Software Developer" />
+    <meta property="og:description" content="Portfolio of Nigusu Tigabu, an Ethiopian Software Engineering student building practical web applications, backend systems, and AI-powered solutions." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nigusu Tigabu | Software Engineering Student" />
+    <meta name="twitter:description" content="Aspiring Software Developer building practical web applications, backend systems, and AI-powered solutions." />
+    
+    <!-- Theme & Colors -->
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+    <!-- Google Fonts: Space Grotesk (Display Headings), Plus Jakarta Sans (Body), JetBrains Mono (Tech/Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m18 16 4-4-4-4'/%3E%3Cpath d='m6 8-4 4 4 4'/%3E%3Cpath d='m14.5 4-5 16'/%3E%3C/svg%3E" />
+    <!-- Theme initialization script (prevents flash of wrong theme) -->
+    <script>
+      (function() {
+        try {
+          var key = 'portfolio-theme';
+          var saved = localStorage.getItem(key) || localStorage.getItem('nigusu_portfolio_theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="antialiased selection:bg-emerald-500/20 selection:text-emerald-700 dark:selection:text-emerald-300 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
