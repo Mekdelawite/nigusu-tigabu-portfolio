@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
+const personalPhoto = new URL('../asset/Gemini_Generated_Image_6gj6fh6gj6fh6gj6.jpg', import.meta.url).href;
+
 interface HeroVisualProps {
   isMounted: boolean;
 }
@@ -206,12 +208,18 @@ export const HeroVisual: React.FC<HeroVisualProps> = ({ isMounted }) => {
                   <div className="absolute w-48 h-48 rounded-full border border-dashed border-emerald-500/20 animate-spin" style={{ animationDuration: '40s' }} />
                   <div className="absolute w-32 h-32 rounded-full border border-slate-700/50" />
 
-                  {/* Orbit Center: [ AI / CODE ] */}
-                  <div className="relative z-10 w-24 h-24 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900 border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 flex flex-col items-center justify-center text-center p-2 group cursor-pointer">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping absolute -top-1 -right-1" />
-                    <Code2 className="w-5 h-5 text-emerald-400 mb-1" />
-                    <span className="font-bold text-[11px] text-emerald-300 font-mono tracking-wider">[ AI / CODE ]</span>
-                    <span className="text-[9px] text-slate-400 leading-tight mt-0.5">Core Engine</span>
+                  {/* Orbit Center: Personal Photo */}
+                  <div className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 rounded-[1.6rem] overflow-hidden border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 bg-slate-900 group cursor-pointer transition-transform duration-300 ease-out hover:scale-[1.12] hover:shadow-emerald-500/30">
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping absolute -top-1 -right-1 z-20" />
+                    <img
+                      src={personalPhoto}
+                      alt="Nigusu Tigabu portrait"
+                      className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-900/10" />
+                    <div className="absolute bottom-1 left-1 right-1 text-center">
+                      <span className="font-bold text-[8px] sm:text-[9px] text-emerald-200 font-mono tracking-wider">NIGUSU</span>
+                    </div>
                   </div>
 
                   {/* 7 Surrounding Nodes: Python, React, TensorFlow, Flask, PostgreSQL, Hadoop, Spark */}

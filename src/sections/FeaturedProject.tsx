@@ -20,8 +20,6 @@ export const FeaturedProject: React.FC = () => {
   const [selectedDisease, setSelectedDisease] = useState<DiseaseClass>(MAIZE_DISEASE_CLASSES[0]);
   const [activeAdvisoryLanguage, setActiveAdvisoryLanguage] = useState<'english' | 'amharic'>('english');
   const [showHeatmapOverlay, setShowHeatmapOverlay] = useState(true);
-  const [placeholderModal, setPlaceholderModal] = useState<string | null>(null);
-
   const { ref: pillarsRef, isRevealed: pillarsRevealed } = useScrollReveal<HTMLDivElement>({ threshold: 0.1 });
   const { ref: demoRef, isRevealed: demoRevealed } = useScrollReveal<HTMLDivElement>({ threshold: 0.1 });
 
@@ -66,67 +64,24 @@ export const FeaturedProject: React.FC = () => {
             <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </a>
 
-          <button
-            type="button"
-            onClick={() =>
-              setPlaceholderModal(
-                'GitHub Repository URL: Replace FEATURED_PROJECT.githubUrl in src/data/portfolioData.ts once your public repository is ready.'
-              )
-            }
+          <a
+            href={FEATURED_PROJECT.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="interactive-btn group inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium text-[var(--text-primary)] bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] hover:bg-[var(--bg-muted)] shadow-2xs focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none"
           >
             <Github className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
-            <span>GitHub (Placeholder)</span>
-          </button>
+            <span>GitHub</span>
+          </a>
 
-          <button
-            type="button"
-            onClick={() =>
-              setPlaceholderModal(
-                'Live Demo URL: Currently hosted locally in development. Replace FEATURED_PROJECT.liveDemoUrl in src/data/portfolioData.ts with your deployment URL.'
-              )
-            }
+          <a
+            href={FEATURED_PROJECT.liveDemoUrl}
             className="interactive-btn group inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium text-[var(--text-primary)] bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] hover:bg-[var(--bg-muted)] shadow-2xs focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none"
           >
             <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
-            <span>Live Demo (Placeholder)</span>
-          </button>
+            <span>View Demo</span>
+          </a>
         </div>
-
-        {/* Modal for Placeholder explanation */}
-        {placeholderModal && (
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="placeholder-title"
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs"
-            onClick={() => setPlaceholderModal(null)}
-          >
-            <div
-              className="theme-card p-6 max-w-md w-full shadow-2xl space-y-4 scale-in-item is-revealed"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
-                <Info className="w-5 h-5" aria-hidden="true" />
-                <h4 id="placeholder-title" className="font-bold text-base text-[var(--text-primary)]">
-                  Link Placeholder Notice
-                </h4>
-              </div>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                {placeholderModal}
-              </p>
-              <div className="pt-3 border-t border-[var(--border-subtle)] flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setPlaceholderModal(null)}
-                  className="interactive-btn px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white"
-                >
-                  Understood
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Architectural Pillars Grid with Staggered Entrance */}
         <div

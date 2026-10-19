@@ -15,7 +15,11 @@ import { SectionHeader } from '../components/SectionHeader';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const renderCapabilityIcon = (iconName: string) => {
-  const iconProps = { className: 'w-5 h-5 text-emerald-600 dark:text-emerald-400', 'aria-hidden': 'true' };
+  const iconProps = {
+    className: 'w-5 h-5 text-emerald-600 dark:text-emerald-400',
+    'aria-hidden': true,
+  } as const;
+
   switch (iconName) {
     case 'Server':
       return <Server {...iconProps} />;

@@ -8,6 +8,7 @@ import {
   Copy,
   Check,
   ExternalLink,
+  Download,
   AlertCircle,
   CheckCircle2,
   Info,
@@ -88,22 +89,36 @@ export const Contact: React.FC<ContactProps> = ({
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate accessible network response delay
-    setTimeout(() => {
+    const subject = encodeURIComponent(formData.subject.trim());
+    const body = encodeURIComponent(
+      `Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`
+    );
+
+    const mailtoLink = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
+
+    try {
+      window.location.href = mailtoLink;
+
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitStatus('success');
+        onShowToast(
+          'Your default email app is opening with your message ready to send to nigusutigabu21016@gmail.com.',
+          'success'
+        );
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+        setErrors({});
+      }, 300);
+    } catch (error) {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      onShowToast(
-        'Thank you! In this portfolio frontend, form submission is simulated. You can also contact Nigusu directly via email.',
-        'success'
-      );
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-      setErrors({});
-    }, 1000);
+      setSubmitStatus('error');
+      onShowToast('Unable to open your email app. Please send the message directly to nigusutigabu21016@gmail.com.', 'error');
+    }
   };
 
   const handleChange = (
@@ -195,13 +210,10 @@ export const Contact: React.FC<ContactProps> = ({
 
               <div className="space-y-2">
                 {/* GitHub */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    onPlaceholderClick(
-                      `GitHub Profile: Update PERSONAL_INFO.githubUrl in src/data/portfolioData.ts with your username.`
-                    )
-                  }
+                <a
+                  href={PERSONAL_INFO.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   className="interactive-btn w-full flex items-center justify-between p-3 rounded-lg border border-[var(--border-subtle)] hover:bg-[var(--bg-muted)] hover:border-[var(--border-strong)] text-left group"
                 >
                   <div className="flex items-center space-x-3">
@@ -211,23 +223,18 @@ export const Contact: React.FC<ContactProps> = ({
                         GitHub Profile
                       </span>
                       <span className="text-xs text-[var(--text-muted)] font-mono">
-                        github.com/YOUR_GITHUB_USERNAME_HERE
+                        github.com/Mekdelawite
                       </span>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300">
-                    Placeholder
-                  </span>
-                </button>
+                  <ExternalLink className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-primary)]" aria-hidden="true" />
+                </a>
 
                 {/* LinkedIn */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    onPlaceholderClick(
-                      `LinkedIn Profile: Update PERSONAL_INFO.linkedinUrl in src/data/portfolioData.ts with your profile link.`
-                    )
-                  }
+                <a
+                  href={PERSONAL_INFO.linkedinUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   className="interactive-btn w-full flex items-center justify-between p-3 rounded-lg border border-[var(--border-subtle)] hover:bg-[var(--bg-muted)] hover:border-[var(--border-strong)] text-left group"
                 >
                   <div className="flex items-center space-x-3">
@@ -237,23 +244,17 @@ export const Contact: React.FC<ContactProps> = ({
                         LinkedIn Profile
                       </span>
                       <span className="text-xs text-[var(--text-muted)] font-mono">
-                        linkedin.com/in/YOUR_LINKEDIN_USERNAME_HERE
+                        linkedin.com/in/Nigus@Developer
                       </span>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300">
-                    Placeholder
-                  </span>
-                </button>
+                  <ExternalLink className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-primary)]" aria-hidden="true" />
+                </a>
 
                 {/* CV Download */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    onPlaceholderClick(
-                      `Curriculum Vitae (CV): Place your resume PDF in the public folder and link it via PERSONAL_INFO.cvDownloadUrl in src/data/portfolioData.ts.`
-                    )
-                  }
+                <a
+                  href={PERSONAL_INFO.cvDownloadUrl}
+                  download
                   className="interactive-btn w-full flex items-center justify-between p-3 rounded-lg border border-[var(--border-subtle)] hover:bg-[var(--bg-muted)] hover:border-[var(--border-strong)] text-left group"
                 >
                   <div className="flex items-center space-x-3">
@@ -267,10 +268,8 @@ export const Contact: React.FC<ContactProps> = ({
                       </span>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300">
-                    Placeholder
-                  </span>
-                </button>
+                  <Download className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-primary)]" aria-hidden="true" />
+                </a>
               </div>
             </div>
           </div>
@@ -286,17 +285,10 @@ export const Contact: React.FC<ContactProps> = ({
               <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
                 Send a Message
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--text-secondary)] mb-6">
-                Fill out the form below. Front-end validation and accessible state feedback are fully wired.
-              </p>
+           
 
               {/* Status Notice Regarding Backend */}
-              <div className="p-3.5 rounded-lg bg-[var(--bg-muted)] border border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] flex items-start space-x-2.5 mb-6">
-                <Info className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <span>
-                  <strong>Developer Note:</strong> This frontend form simulates submission states and validates input according to WCAG AA criteria. To receive emails directly, connect this form to EmailJS, Formspree, or your custom Flask backend API.
-                </span>
-              </div>
+            
 
               {submitStatus === 'success' && (
                 <div

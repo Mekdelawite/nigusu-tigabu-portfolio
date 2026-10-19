@@ -99,10 +99,10 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-[var(--text-secondary)] hover:text-emerald-500 transition-colors"
-                title="GitHub Profile Placeholder"
+                title="GitHub Profile"
               >
                 <Github className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-                <span>GitHub (Placeholder)</span>
+                <span>GitHub</span>
               </a>
             </div>
 

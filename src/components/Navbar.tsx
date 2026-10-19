@@ -136,7 +136,7 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="interactive-btn hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-card)] hover:bg-[var(--bg-muted)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none"
-              title="GitHub Profile (Placeholder)"
+              title="GitHub Profile"
               aria-label="Visit Nigusu's GitHub profile (opens in new tab)"
             >
               <Github className="w-3.5 h-3.5" aria-hidden="true" />
